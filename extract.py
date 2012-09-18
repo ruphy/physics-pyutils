@@ -31,11 +31,11 @@ def run_sim(nm):
 
     # open the tree file
     #myfile = TFile( 'out.root' )
-    print "building treehandler"
+    #print "building treehandler"
     t = TreeHandler('out.root', 'tree')
-    print "returning"
-    print t.AbsLength
-    return
+    #print "returning"
+    #print t.AbsLength
+    #return
     # retrieve the ntuple of interest
     #mychain = gDirectory.Get( 'tree' )
     #entries = mychain.GetEntriesFast()
@@ -49,25 +49,8 @@ def run_sim(nm):
     #def funz(P, x):
         #return P[1]*np.exp(-x/P[0])
 
-    #plt.clf()
-    #plt.grid(True)
 
-    #(n, bins, patches) = plt.hist(data, 100, color='#50e300', alpha=.7)
-    #bins = 0.5*(bins[:-1] + bins[1:])
-
-    #(param, errors, cov) = odr.odr(funz, [184.5, 10000], n, bins)
-
-    #ydata = funz(param, np.arange(min(bins), max(bins)))
-    #plt.plot(np.arange(min(bins), max(bins)), ydata)
-
-    #plt.title(r"Mean absorption length (%dnm): $\lambda=$ %.1f mm" % (nm, param[0]))
-    #plt.ylabel("Photons")
-    #plt.xlabel("Distance travelled (mm)")
-
-    ##print "lambda calcolato = ", param[0]
-
-    #plt.savefig("out%d.png" %nm)
-
+        plt.title(r"Mean absorption length (%dnm): $\lambda=$ %.1f mm" % (nm, param[0]))
 
 nms = [420, 470, 500];
 
