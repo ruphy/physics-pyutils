@@ -6,9 +6,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy import odr
 from re import sub
-from ROOT import gInterpreter, gSystem, TFile, gDirectory
+from ROOT import gInterpreter, gSystem, TFile, gDirectory, gROOT
 
-popen('root -l dict.cpp')
+popen('root -l dict.cpp').read()
+#gROOT.ProcessLine('.x dict.cpp')
 
 # ---------------------- #
 # Inizio codice serio    #
@@ -30,40 +31,40 @@ def run_sim(nm):
     # open the tree file
     #myfile = TFile( 'out.root' )
 
-    t = TreeHandler('out.root', 'tree')
-    print t.AbsLength
+    #t = TreeHandler('out.root', 'tree')
+    #print t.AbsLength
     return
     # retrieve the ntuple of interest
     #mychain = gDirectory.Get( 'tree' )
     #entries = mychain.GetEntriesFast()
 
-    data = []
+    #data = []
 
-    for jentry in xrange( entries ):
-        mychain.GetEntry( jentry )
-        data.append(mychain.AbsLength)
+    #for jentry in xrange( entries ):
+        #mychain.GetEntry( jentry )
+        #data.append(mychain.AbsLength)
 
-    def funz(P, x):
-        return P[1]*np.exp(-x/P[0])
+    #def funz(P, x):
+        #return P[1]*np.exp(-x/P[0])
 
-    plt.clf()
-    plt.grid(True)
+    #plt.clf()
+    #plt.grid(True)
 
-    (n, bins, patches) = plt.hist(data, 100, color='#50e300', alpha=.7)
-    bins = 0.5*(bins[:-1] + bins[1:])
+    #(n, bins, patches) = plt.hist(data, 100, color='#50e300', alpha=.7)
+    #bins = 0.5*(bins[:-1] + bins[1:])
 
-    (param, errors, cov) = odr.odr(funz, [184.5, 10000], n, bins)
+    #(param, errors, cov) = odr.odr(funz, [184.5, 10000], n, bins)
 
-    ydata = funz(param, np.arange(min(bins), max(bins)))
-    plt.plot(np.arange(min(bins), max(bins)), ydata)
+    #ydata = funz(param, np.arange(min(bins), max(bins)))
+    #plt.plot(np.arange(min(bins), max(bins)), ydata)
 
-    plt.title(r"Mean absorption length (%dnm): $\lambda=$ %.1f mm" % (nm, param[0]))
-    plt.ylabel("Photons")
-    plt.xlabel("Distance travelled (mm)")
+    #plt.title(r"Mean absorption length (%dnm): $\lambda=$ %.1f mm" % (nm, param[0]))
+    #plt.ylabel("Photons")
+    #plt.xlabel("Distance travelled (mm)")
 
-    #print "lambda calcolato = ", param[0]
+    ##print "lambda calcolato = ", param[0]
 
-    plt.savefig("out%d.png" %nm)
+    #plt.savefig("out%d.png" %nm)
 
 
 nms = [420, 470, 500];
