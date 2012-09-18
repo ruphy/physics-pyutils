@@ -4,10 +4,8 @@ from os import popen
 
 class TreeHandler:
 
-    _treeName = ''
-    _fileName = ''
-    #_entries = 0
-    #_mychain = ''
+    _treeName = ""
+    _fileName = ""
 
     def __init__(self, filename, treename):
         self._fileName = filename
@@ -16,13 +14,13 @@ class TreeHandler:
     def __getattr__(self, attr):
         data = []
 
-        myfile = TFile(self._fileName)
-        mychain = gDirectory.Get(self._treeName)
-        entries = mychain.GetEntriesFast()
-        #print entries
-        #for jentry in xrange(self._entries):
-            #self._mychain.GetEntry(jentry)
-            #data.append(self._mychain.attr)
+        _f = TFile(self._fileName)
+        _chain = gDirectory.Get(self._treeName)
+        _entries = _chain.GetEntriesFast()
+
+        for jentry in xrange(_entries):
+            _chain.GetEntry(jentry)
+            data.append(_chain.__getattr__(attr))
         return data
 
 
