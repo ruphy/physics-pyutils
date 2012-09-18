@@ -1,8 +1,7 @@
 # Aggiungi qui, separandole da virgole, le classi di ROOT
 # che usi:
 from os import popen
-from ROOT import TCanvas, TH1F, TFile, TF1
-from ROOT import gInterpreter, gSystem, gROOT, gDirectory
+import treehandler
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import odr
