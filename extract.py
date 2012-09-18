@@ -8,7 +8,8 @@ from scipy import odr
 from re import sub
 from ROOT import gInterpreter, gSystem, TFile, gDirectory, gROOT
 
-popen('root -l dict.cpp').read()
+popen('root -l -q -b -n dict.cpp 2> /dev/null').read()
+print "finished root"
 #gROOT.ProcessLine('.x dict.cpp')
 
 # ---------------------- #
@@ -30,8 +31,9 @@ def run_sim(nm):
 
     # open the tree file
     #myfile = TFile( 'out.root' )
-
-    #t = TreeHandler('out.root', 'tree')
+    print "building treehandler"
+    t = TreeHandler('out.root', 'tree')
+    print "returning"
     #print t.AbsLength
     return
     # retrieve the ntuple of interest
