@@ -8,8 +8,7 @@ from scipy import odr
 from re import sub
 from ROOT import gInterpreter, gSystem, TFile, gDirectory
 
-gSystem.AddLinkedLibs(popen('root-config --libs').read())
-gInterpreter.GenerateDictionary("vector<ROOT::Math::Cartesian3D<double> >", "Math/Cartesian3D.h")
+popen('root -l dict.cpp')
 
 # ---------------------- #
 # Inizio codice serio    #
