@@ -1,11 +1,12 @@
 # Aggiungi qui, separandole da virgole, le classi di ROOT
 # che usi:
 from os import popen
-import treehandler
+from treehandler import *
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import odr
 from re import sub
+from ROOT import gInterpreter, gSystem, TFile, gDirectory
 
 gSystem.AddLinkedLibs(popen('root-config --libs').read())
 gInterpreter.GenerateDictionary("vector<ROOT::Math::Cartesian3D<double> >", "Math/Cartesian3D.h")
@@ -15,24 +16,27 @@ gInterpreter.GenerateDictionary("vector<ROOT::Math::Cartesian3D<double> >", "Mat
 # ---------------------- #
 
 def run_sim(nm):
-    ev = 1239.84/nm
-    # sub the new energy in the file
-    with open('gps.mac','r') as f:
-        newlines = []
-        for line in f.readlines():
-            newlines.append(sub(r'/gps/energy.*', '/gps/energy %.3f eV' % ev, line))
-    with open('gps.mac', 'w') as f:
-        for line in newlines:
-            f.write(line)
-    # run the simulation
-    popen('./crystal crystal.cfg')
+    #ev = 1239.84/nm
+    ## sub the new energy in the file
+    #with open('gps.mac','r') as f:
+        #newlines = []
+        #for line in f.readlines():
+            #newlines.append(sub(r'/gps/energy.*', '/gps/energy %.3f eV' % ev, line))
+    #with open('gps.mac', 'w') as f:
+        #for line in newlines:
+            #f.write(line)
+    ## run the simulation
+    #popen('./crystal crystal.cfg')
 
     # open the tree file
-    myfile = TFile( 'out.root' )
+    #myfile = TFile( 'out.root' )
 
+    t = TreeHandler('out.root', 'tree')
+    print t.AbsLength
+    return
     # retrieve the ntuple of interest
-    mychain = gDirectory.Get( 'tree' )
-    entries = mychain.GetEntriesFast()
+    #mychain = gDirectory.Get( 'tree' )
+    #entries = mychain.GetEntriesFast()
 
     data = []
 

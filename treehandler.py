@@ -1,5 +1,6 @@
 
-from ROOT import gInterpreter, gSystem, TFile, gDirectory
+from ROOT import gInterpreter, gSystem, TFile, gDirectory, gDebug
+from os import popen
 
 class TreeHandler:
 
@@ -9,21 +10,23 @@ class TreeHandler:
     _mychain = ''
 
     def __init__(self, filename, treename):
-        gSystem.AddLinkedLibs(popen('root-config --libs').read())
+        gDebug = 7
+        #gSystem.AddLinkedLibs(popen('root-config --libs').read())
+        #gSystem.SetInclude(popen('root-config --include').read());
         gInterpreter.GenerateDictionary("vector<ROOT::Math::Cartesian3D<double> >", "Math/Cartesian3D.h")
-        _fileName = filename
-        _treeName = treename
+        self._fileName = filename
+        self._treeName = treename
 
-        myfile = TFile(_fileName)
-        _mychain = gDirectory.Get(_treeName)
-        _entries = mychain.GetEntriesFast()
+        myfile = TFile(self._fileName)
+        self._mychain = gDirectory.Get(self._treeName)
+        self._entries = self._mychain.GetEntriesFast()
 
 
     def __getattr__(self, attr):
         data = []
-        for jentry in xrange(_entries):
-            _mychain.GetEntry(jentry)
-            data.append(_mychain.attr)
+        for jentry in xrange(self._entries):
+            self._mychain.GetEntry(jentry)
+            data.append(self._mychain.attr)
         return data
 
 
