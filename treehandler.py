@@ -16,9 +16,9 @@ class TreeHandler:
     def __getattr__(self, attr):
         data = []
 
-        #myfile = TFile(self._fileName)
-        #mychain = gDirectory.Get(self._treeName)
-        #entries = mychain.GetEntriesFast()
+        myfile = TFile(self._fileName)
+        mychain = gDirectory.Get(self._treeName)
+        entries = mychain.GetEntriesFast()
         #print entries
         #for jentry in xrange(self._entries):
             #self._mychain.GetEntry(jentry)

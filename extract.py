@@ -34,7 +34,7 @@ def run_sim(nm):
     print "building treehandler"
     t = TreeHandler('out.root', 'tree')
     print "returning"
-    #print t.AbsLength
+    print t.AbsLength
     return
     # retrieve the ntuple of interest
     #mychain = gDirectory.Get( 'tree' )
