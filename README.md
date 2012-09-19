@@ -1,7 +1,7 @@
 physics-pyutils
 ===============
 
-Usage:
+Example usage:
 
     from pyphysics.histomanager import HistoManager
     from pyphysics.treehandler import TreeHandler
@@ -15,5 +15,17 @@ Usage:
     h.set_data(t.AbsLength)
     h.set_initial_guess([1,1])
     h.set_func(funz)
+
     h.fit_and_draw()
-    h.save()
+
+    h.set_title("Plot title")
+    h.set_xlabel("x Data")
+    h.set_ylabel("y Data")
+    h.save("out.png")
+
+How to install pyphysics:
+-------------------------
+
+Standard way - just run:
+
+    sudo ./setup.py install
