@@ -27,7 +27,7 @@ class HistoManager:
         self._func = func
 
     def set_initial_guess(self, guess):
-        self._initial_params = params
+        self._initial_params = guess
 
     def set_xlabel(self, xlabel):
         self._xlabel = xlabel
