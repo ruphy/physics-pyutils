@@ -1,15 +1,10 @@
 # Aggiungi qui, separandole da virgole, le classi di ROOT
 # che usi:
-from os import system
 from treehandler import *
 from histomanager import *
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import odr
-from re import sub
-from ROOT import gInterpreter, gSystem, TFile, gDirectory, gROOT
+from ROOT import gInterpreter
 
-system('root -l -q -b -n dict.cpp 2> /dev/null')
+gInterpreter.GenerateDictionary('"vector<ROOT::Math::Cartesian3D<double> >", "Math/Cartesian3D.h");')
 
 def funz(P, x):
     return P[0]*np.exp(-x/P[1])
