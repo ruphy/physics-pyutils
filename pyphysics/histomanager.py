@@ -59,9 +59,9 @@ class HistoManager:
 
         binwidth = (bins[1]-bins[0])
         xdata = bins
-        ydata = n/binwidth
+        ydata = hist/binwidth
 
-        plt.bar(xdata, bin_edges[:-1]/binwidth, binwidth, color='#50e300')
+        plt.bar(bin_edges[:-1], ydata, binwidth, color='#50e300')
 
         mymodel = odr.Model(self._func)
         mydata = odr.RealData(xdata, ydata) #, sx=(bins[0]-bins[1])/2, sy=0.001)
