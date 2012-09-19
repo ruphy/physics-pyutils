@@ -62,7 +62,7 @@ class HistoManager:
         mymodel = odr.Model(self._func) 
         mydata = odr.RealData(xdata, ydata) #, sx=(bins[0]-bins[1])/2, sy=0.001)
         
-        myodr = odr.ODR(mydata, mymodel, beta0=self._initial_params, maxit=10000)
+        myodr = odr.ODR(mydata, mymodel, beta0=self._initial_params, maxit=100000)
 
         myoutput = myodr.run()
         myoutput.pprint()
@@ -75,7 +75,7 @@ class HistoManager:
 
         return self._fitted_params
 
-    def save(self, outfile="out.png"):
-        plt.savefig(outfile)
+    def save(self, outfile="out.png", dpiin=300):
+        plt.savefig(outfile, dpi=dpiin)
 
 
