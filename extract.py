@@ -1,8 +1,9 @@
-# Aggiungi qui, separandole da virgole, le classi di ROOT
-# che usi:
-from treehandler import *
-from histomanager import *
+
+#from histomanager import HistoManager
+from pyphysics.histomanager import HistoManager
+from pyphysics.treehandler import *
 from ROOT import gInterpreter
+import numpy as np
 
 gInterpreter.GenerateDictionary('"vector<ROOT::Math::Cartesian3D<double> >", "Math/Cartesian3D.h");')
 

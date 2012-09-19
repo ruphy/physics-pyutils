@@ -45,6 +45,7 @@ class HistoManager:
         return self._fitted_params
     
     def fit_and_draw(self, nbins=100):
+        print self._initial_params
         
         if (self._initial_params == None):
             print "I can't fit without an initial guess"
@@ -61,31 +62,13 @@ class HistoManager:
         mymodel = odr.Model(self._func) 
         mydata = odr.RealData(xdata, ydata) #, sx=(bins[0]-bins[1])/2, sy=0.001)
         
-        if (self._initial_params):
-            myodr = odr.ODR(mydata, mymodel, beta0=self._initial_params, maxit=10000)
-        else:
-            # if there are no initial guesses, guess with a simpler fit
-            def f2(x, *params):
-                #print list(params)
-                #print self._func(lparams), x)
-                return self._func(params, x)
-
-            print f2(1, 2, 3)
-            try:
-                params, cov = curve_fit(f2, xdata, ydata, p0=initi)
-            except:
-                params = None
-
-            print params
-
-            myodr = odr.ODR(mydata, mymodel, beta0=params, maxit=10000)
+        myodr = odr.ODR(mydata, mymodel, beta0=self._initial_params, maxit=10000)
 
         myoutput = myodr.run()
         myoutput.pprint()
 
         self._fitted_params = myoutput.beta
 
-        
         xdata = np.arange(min(bins), max(bins))
         ydata = self._func(myoutput.beta, xdata)
         plt.plot(xdata, ydata)
