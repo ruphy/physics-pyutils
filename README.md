@@ -1,7 +1,18 @@
 physics-pyutils
 ===============
 
+
+How to install pyphysics:
+-------------------------
+
+Standard way - just run:
+
+    sudo ./setup.py install
+
 Example usage:
+--------------
+
+The code should be self-explanatory. Here is a snippet code to illustrate how it works:
 
     from pyphysics.histomanager import HistoManager
     from pyphysics.treehandler import TreeHandler
@@ -22,10 +33,3 @@ Example usage:
     h.set_xlabel("x Data")
     h.set_ylabel("y Data")
     h.save("out.png")
-
-How to install pyphysics:
--------------------------
-
-Standard way - just run:
-
-    sudo ./setup.py install
