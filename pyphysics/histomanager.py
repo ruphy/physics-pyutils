@@ -53,13 +53,17 @@ class HistoManager:
         
         plt.grid(True)
 
-        (n, bins, patches) = plt.hist(self._data, nbins, color='#50e300', alpha=.7)
-        bins = 0.5*(bins[:-1] + bins[1:])
+        hist, bin_edges = np.histogram(self._data, bins=nbins)
 
+        bins = 0.5*(bin_edges[:-1] + bin_edges[1:])
+
+        binwidth = (bins[1]-bins[0])
         xdata = bins
-        ydata = n
+        ydata = n/binwidth
 
-        mymodel = odr.Model(self._func) 
+        plt.bar(xdata, bin_edges[:-1]/binwidth, binwidth, color='#50e300')
+
+        mymodel = odr.Model(self._func)
         mydata = odr.RealData(xdata, ydata) #, sx=(bins[0]-bins[1])/2, sy=0.001)
         
         myodr = odr.ODR(mydata, mymodel, beta0=self._initial_params, maxit=100000)
