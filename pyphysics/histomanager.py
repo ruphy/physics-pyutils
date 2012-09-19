@@ -44,7 +44,7 @@ class HistoManager:
     def get_fitted_params(self):
         return self._fitted_params
     
-    def fit_and_draw(self, nbins=100):
+    def fit_and_draw(self, nbins=100, logy=False):
         print self._initial_params
         
         if (self._initial_params == None):
@@ -61,7 +61,7 @@ class HistoManager:
         xdata = bins
         ydata = hist/binwidth
 
-        plt.bar(bin_edges[:-1], ydata, binwidth, color='#50e300')
+        plt.bar(bin_edges[:-1], ydata, binwidth, color='#50e300', log=logy)
 
         mymodel = odr.Model(self._func)
         mydata = odr.RealData(xdata, ydata) #, sx=(bins[0]-bins[1])/2, sy=0.001)
