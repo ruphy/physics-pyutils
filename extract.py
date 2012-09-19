@@ -1,7 +1,6 @@
 
-#from histomanager import HistoManager
 from pyphysics.histomanager import HistoManager
-from pyphysics.treehandler import *
+from pyphysics.treehandler import TreeHandler
 from ROOT import gInterpreter
 import numpy as np
 
@@ -14,6 +13,7 @@ t = TreeHandler('out.root', 'tree')
 
 h = HistoManager()
 h.set_data(t.AbsLength)
+h.set_initial_guess([1,1])
 h.set_func(funz)
 h.fit_and_draw()
 h.save()
